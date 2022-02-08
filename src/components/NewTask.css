@@ -4,10 +4,11 @@
     border-radius: 10px;
     display:flex;
     flex-flow: row wrap;
-    height: 100px;
+    height: auto;
     justify-content: space-evenly;
     align-items:center;
     margin-top:20px;
+    padding: 20px 0; 
 }
 
 
@@ -49,4 +50,29 @@ label{
     color:white;
     font-size:17px;
     font-weight:bolder;
+    margin-right: 10px;
+}
+
+@media only screen and (max-width: 1200px)  {
+        .NewTask-Frame{
+            justify-content: center;
+            flex-flow: column wrap;
+        }
+        .NewTask-Frame_sub{
+            display:flex;
+            flex:1;
+            align-items: center;
+            margin-left:0;
+            margin-bottom: 15px;
+        }
+        .NewTask-Frame-supleft{
+            flex:1;
+            flex-flow:column wrap;
+            justify-content: center;
+            align-content:center;
+        }
+}
+@media only screen and (max-width: 670px)  {
+    
+    
 }
