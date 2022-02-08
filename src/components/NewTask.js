@@ -15,7 +15,7 @@ const NewTask = () => {
                 </div>
             </div>
             <div  className="NewTask-Frame-supright">
-            <button>Add Todo</button>
+            <button className="btn">Add Todo</button>
             </div>
         </div>
     )
