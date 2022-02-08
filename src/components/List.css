@@ -1,0 +1,53 @@
+.List_Frame{
+    width: 80%;
+    background-color:rgb(141, 141, 141);
+    margin-top:20px;
+    border-radius: 10px;
+    display:flex;
+    flex-flow: column wrap;
+}
+.List_Frame h1{
+    color:rgb(255, 136, 0);
+    text-shadow: 2px 2px 2px black;
+}
+
+.List_Frame_Item{
+    width: 100%;
+    display:flex;
+    flex-flow: row wrap;
+    justify-content:space-between;
+    padding: 10px 20px;
+    align-items:center;
+}
+.List_Frame-left{
+
+}
+
+.btn{
+    padding: 0 8px;
+    height: 35px;
+    border-radius: 10px;
+    font-size:17px;
+    font-weight:bolder;
+    margin-left: 15px;
+    transition: transform .3s;
+}
+.List_Frame-right #edit{
+    border: 1px solid rgb(255, 136, 0);
+    color:rgb(255, 136, 0);
+
+}
+.List_Frame-right #complete{
+    color:rgb(0, 201, 0);
+    transition: transform .3s;
+    border: 1px solid rgb(0,201,0);
+
+}
+.List_Frame-right #delete{
+    color:red;
+    border: 1px solid red;
+    transition: transform .3s;
+}
+button:hover{
+transform:scale(1.1);
+}
