@@ -5,6 +5,10 @@ import Complete from "./icons/conplete"
 import Delete from "./icons/delete"
 
 const Item = (props) => {
+    
+    const DeleteClickHandler = (id) => {
+        props.RemoveClickHandler(id);
+    }
     return (
         <div className="List_Frame_Item">
             <div className="List_Frame-left">
@@ -14,7 +18,7 @@ const Item = (props) => {
             <div className="List_Frame-right">
                 <button id="edit" className="btn">Edit <Edit /></button>
                 <button id="complete" className="btn">Complete <Complete /></button>
-                <button id="delete" className="btn">Delete <Delete /></button>
+                <button id="delete" className="btn" onClick={DeleteClickHandler(props.item._id)}>Delete <Delete /></button>
             </div>
         </div>
     )

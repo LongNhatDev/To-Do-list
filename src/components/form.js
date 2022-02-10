@@ -1,21 +1,27 @@
-import "./form.css";
+// import "./form.css";
 import NewTask from "./NewTask";
 import List from "./List";
-import { connect } from "react-redux";
-import React, { useState } from "react";
-import { retrieveItems } from "./actions";
+import { connect, useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
 
-const Form = () => {
-  const [toDoList, setToDoList] = useState([]);
-  console.log(retrieveItems)
-  const item = toDoList.map((a) => <List item={a} />);
+
+const Form = ( {toDoList, RemoveItem} ) => {
+  
+
+  const RemoveItemHandler = (id) => {
+    RemoveItem(id);
+  }
+
+  const itemList = toDoList.map((a) => <List item={a} items={toDoList} RemoveItemHandler={RemoveItemHandler} />);
+  
   return (
+
     <div className="table">
       <h1>My Todos</h1>
-      <NewTask />
-      {item}
+      {itemList}
     </div>
   );
 };
+
 
 export default Form;
