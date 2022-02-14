@@ -1,10 +1,19 @@
-import './App.css'
 import Form from './components/form'
 import NewTask from './components/NewTask'
 import api from './api/contact'
 import React, { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import ToDoService from './servive'
+import styled from 'styled-components'
+
+const AppDiv = styled.div`
+  text-align: center;
+  background-color: rgb(209, 209, 209);
+  width:100%;
+  height:1000px;
+ display:flex;
+ justify-content: center;
+`
 
 const App = () => {
   const [toDoList, setToDoList] = useState([])
@@ -76,7 +85,7 @@ const App = () => {
   }
 
   return (
-    <div className="App">
+    <AppDiv>
       <NewTask
         onChangeName={onChangeName}
         onChangeDescription={onChangeDescription}
@@ -85,8 +94,8 @@ const App = () => {
         setRefresh={() => setRefresh(!refresh)}
       />
       <Form toDoList={toDoList} ItemAction={ItemAction} />
-    </div>
+    </AppDiv>
   )
-}
+} 
 
 export default App
