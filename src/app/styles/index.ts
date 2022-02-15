@@ -5,7 +5,9 @@ const AppFrame = styled.div`
   background-color: rgb(209, 209, 209);
   width:100%;
   height:1000px;
- display:flex;
- justify-content: center;
+  display:flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `
 export default AppFrame

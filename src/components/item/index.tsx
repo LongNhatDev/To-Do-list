@@ -5,22 +5,32 @@ import Edit from "../icons/edit";
 import Complete from "../icons/conplete";
 import Delete from "../icons/delete";
 import ListFrameLeft from "./styles/list-frame-left";
+import { ITask } from "../../interfaces";
 
-const Item = () => {
+interface IProps {
+  task: ITask,
+  deleteTask(taskIdToDelete: string):void,
+  editTask(taskIdToUpdate:string):void,
+  setCompletedTask(taskIdToComplete:string) :void 
+  
+}
+const Item = ({task,editTask,deleteTask,setCompletedTask}:IProps) => {
   return (
     <ListFrameItem>
       <ListFrameLeft>
-        <h1></h1>
-        <p></p>
+        <h1>{task.name}</h1>
+        <p>{task.description}</p>
       </ListFrameLeft>
       <ListFrameRight>
-        <Button>
+        <Button onClick={() => {editTask(task._id)}}>
           Edit <Edit />
         </Button>
-        <Button id="complete">
+        { task.isDone === false &&
+          <Button onClick={() => {setCompletedTask(task._id)}}>
           Complete <Complete />
-        </Button>
-        <Button>
+          </Button>
+        }
+        <Button onClick={()=>{deleteTask(task._id)}}>
           Delete <Delete />
         </Button>
       </ListFrameRight>
