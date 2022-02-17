@@ -1,22 +1,19 @@
-import { ITask } from "../../interfaces"
-import Item from "../item"
-import ListFrame from "./styles"
-
+import { observer } from "mobx-react-lite";
+import { TodoList } from "../../store/todoStore";
+import Item from "../item";
+import ListFrame from "./styles";
 
 interface IProps {
-    todoList: ITask[],
-    deleteTask(taskIdToDelete: string):void,
-    editTask(taskIdToUpdate:string):void,
-    setCompletedTask(taskIdToComplete:string) :void,
+  todoStore: TodoList;
+
 }
-  
-const List = ({todoList,deleteTask,editTask,setCompletedTask} :IProps) => {
-    return (
-        <ListFrame>
-            {todoList.map((task:ITask,index:number)=>{
-               return <Item key={index} task={task} deleteTask={deleteTask} editTask={editTask} setCompletedTask={setCompletedTask} />
-            })}
-        </ListFrame>
-    )
-}
-export default List
+
+const List = observer(({ todoStore}: IProps) => (
+  <ListFrame>
+    {todoStore.todos.map((todo) => (
+      <Item todo={todo} todoStore={todoStore} key={todo._id} />
+    ))}
+  </ListFrame>
+));
+
+export default List;
