@@ -1,52 +1,94 @@
-import ListFrameItem from "./styles/list-frame-item";
-import ListFrameRight from "./styles/list-frame-right";
-import Button from "./styles/button";
-import Edit from "../icons/edit";
+import { observer } from "mobx-react-lite";
+import { useState } from "react";
+import { Todo, TodoList } from "../../store/todoStore";
 import Complete from "../icons/complete";
 import Delete from "../icons/delete";
+import Edit from "../icons/edit";
+import Input from "../new-item/styles/input";
+import Button from "./styles/button";
+import ListFrameItem from "./styles/list-frame-item";
 import ListFrameLeft from "./styles/list-frame-left";
-import { ITask } from "../../interfaces";
+import ListFrameRight from "./styles/list-frame-right";
 
 interface IProps {
-  task: ITask;
-  deleteTask(taskIdToDelete: string): void;
-  editTask(taskIdToUpdate: string): void | null;
-  setCompletedTask(taskIdToComplete: string): void;
+  todo: Todo;
+  todoStore: TodoList;
+  setRefresh(): void;
 }
-const Item = ({ task, editTask, deleteTask, setCompletedTask }: IProps) => {
+const Item = observer(({ todo, todoStore, setRefresh }: IProps) => {
+  const [name, setName] = useState<string>(todo.name);
+  const [description, setDescription] = useState<string>(todo.description);
+  const [editButton, setEditButton] = useState<boolean>(false);
+  const [completeButton, setCompleteButton] = useState<boolean>(todo.isDone);
+  const setUpdateButton = () => {
+    setEditButton(!editButton);
+    setRefresh();
+  };
+  const setCompletedButton = () => {
+    setCompleteButton(!completeButton);
+    todoStore.setCompletedItem(todo._id);
+    setRefresh();
+  };
+  const handleRemove = () => {
+    todoStore.removeTodo(todo._id);
+    setRefresh();
+  };
+  const handleUpdate = () => {
+    todoStore.editItem(todo._id, name, description);
+    setUpdateButton();
+  };
   return (
     <ListFrameItem>
       <ListFrameLeft>
-        <h1>{task?.name}</h1>
-        <br />
-        <h3>{task?.description}</h3>
+        {editButton ? (
+          <>
+            <Input
+              value={name}
+              onChange={(event) => {
+                setName(event.target.value);
+              }}
+            />
+            <Input
+              value={description}
+              onChange={(event) => {
+                setDescription(event.target.value);
+              }}
+            />
+          </>
+        ) : (
+          <>
+            {" "}
+            <h1>{todo.name}</h1>
+            <p>{todo.description}</p>
+          </>
+        )}
       </ListFrameLeft>
       <ListFrameRight>
-        <Button
-          onClick={() => {
-            editTask(task._id);
-          }}
-        >
-          Edit <Edit />
-        </Button>
-        {task.isDone === false && (
-          <Button
-            onClick={() => {
-              setCompletedTask(task._id);
-            }}
-          >
+        {editButton ? (
+          <Button onClick={handleUpdate}>
+            Update <Edit />
+          </Button>
+        ) : (
+          <Button onClick={setUpdateButton}>
+            Edit <Edit />
+          </Button>
+        )}
+        {!editButton && (
+          <Button onClick={handleRemove}>
+            Delete <Delete />
+          </Button>
+        )}
+        {completeButton ? (
+          <Button>
+            <Complete />
+          </Button>
+        ) : (
+          <Button onClick={setCompletedButton}>
             Complete <Complete />
           </Button>
         )}
-        <Button
-          onClick={() => {
-            deleteTask(task._id);
-          }}
-        >
-          Delete <Delete />
-        </Button>
       </ListFrameRight>
     </ListFrameItem>
   );
-};
+});
 export default Item;
