@@ -1,13 +1,15 @@
 import styled from 'styled-components'
 
-const Button = styled.button`
+const ButtonU = styled.button`
   padding: 0 8px;
-  height: 35px;
+  min-height: 35px;
+  width: 120px;
   border-radius: 10px;
   font-size: 17px;
   font-weight: bolder;
-  margin-left: 15px;
+
   transition: transform 0.3s;
+  color: orange;
 
   &:hover {
     transform: scale(1.1);
@@ -16,4 +18,4 @@ const Button = styled.button`
     transform: scale(0.9);
   }
 `
-export default Button
+export default ButtonU

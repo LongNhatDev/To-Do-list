@@ -4,6 +4,6 @@ const NewTaskFrameSub = styled.div`
   display: flex;
   flex-flow: column wrap;
   align-items: flex-start;
-  margin-left: 50px;
+  justify-content: space-between;
 `
 export default NewTaskFrameSub

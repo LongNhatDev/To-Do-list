@@ -22,7 +22,9 @@ const NewItem = observer(({ todoStore, setRefresh }: IProps) => {
   };
   return (
     <NewTaskFrame>
+      
       <NewTaskFrameSupLeft>
+
         <NewTaskFrameSub>
           <Label>Name</Label>
           <Input
@@ -41,12 +43,17 @@ const NewItem = observer(({ todoStore, setRefresh }: IProps) => {
             }}
           />
         </NewTaskFrameSub>
+        
       </NewTaskFrameSupLeft>
+
       <NewTaskFrameSupRight>
-        <Button className="btn" onClick={handleAdd}>
+
+        <Button onClick={handleAdd}>
           Add Todo
         </Button>
+
       </NewTaskFrameSupRight>
+
     </NewTaskFrame>
   );
 });

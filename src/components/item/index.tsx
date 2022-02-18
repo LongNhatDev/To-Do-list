@@ -5,7 +5,9 @@ import Complete from "../icons/complete";
 import Delete from "../icons/delete";
 import Edit from "../icons/edit";
 import Input from "../new-item/styles/input";
-import Button from "./styles/button";
+import ButtonC from "./styles/buttonc";
+import ButtonD from "./styles/buttond";
+import ButtonU from "./styles/buttonu";
 import ListFrameItem from "./styles/list-frame-item";
 import ListFrameLeft from "./styles/list-frame-left";
 import ListFrameRight from "./styles/list-frame-right";
@@ -39,6 +41,7 @@ const Item = observer(({ todo, todoStore, setRefresh }: IProps) => {
   };
   return (
     <ListFrameItem>
+
       <ListFrameLeft>
         {editButton ? (
           <>
@@ -63,31 +66,33 @@ const Item = observer(({ todo, todoStore, setRefresh }: IProps) => {
           </>
         )}
       </ListFrameLeft>
+
       <ListFrameRight>
         {editButton ? (
-          <Button onClick={handleUpdate}>
+          <ButtonU onClick={handleUpdate}>
             Update <Edit />
-          </Button>
+          </ButtonU>
         ) : (
-          <Button onClick={setUpdateButton}>
+          <ButtonU onClick={setUpdateButton}>
             Edit <Edit />
-          </Button>
+          </ButtonU>
         )}
         {!editButton && (
-          <Button onClick={handleRemove}>
+          <ButtonD onClick={handleRemove}>
             Delete <Delete />
-          </Button>
+          </ButtonD>
         )}
         {completeButton ? (
-          <Button>
+          <ButtonC>
             <Complete />
-          </Button>
+          </ButtonC>
         ) : (
-          <Button onClick={setCompletedButton}>
+          <ButtonC onClick={setCompletedButton}>
             Complete <Complete />
-          </Button>
+          </ButtonC>
         )}
       </ListFrameRight>
+          
     </ListFrameItem>
   );
 });
